@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light-theme">
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1><i class="fas fa-wallet"></i> Finance Tracker</h1>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="icon-btn">🌙</button>
+                    <button id="menu-toggle" class="icon-btn mobile-only">☰</button>
+                </div>
+            </div>
+            <div class="balance-container">
+                <div class="balance-card">
+                    <span>Баланс</span>
+                    <h2 id="total-balance">0 Сум</h2>
+                </div>
+                <div class="balance-card">
+                    <span>Доходы</span>
+                    <h2 class="positive" id="total-income">0 Сум</h2>
+                </div>
+                <div class="balance-card">
+                    <span>Расходы</span>
+                    <h2 class="negative" id="total-expense">0 Сум</h2>
+                </div>
+            </div>
+        </header>
+
+        <nav class="mobile-menu hidden">
+            <button class="nav-btn active" data-view="transactions"><i class="fas fa-list"></i> Операции</button>
+            <button class="nav-btn" data-view="analytics"><i class="fas fa-chart-pie"></i> Аналитика</button>
+            <button class="nav-btn" data-view="categories"><i class="fas fa-tags"></i> Категории</button>
+        </nav>
+
+        <div class="main-content">
+            <div class="transaction-form">
+                <select id="transaction-type">
+                    <option value="expense">Расход</option>
+                    <option value="income">Доход</option>
+                </select>
+                <input type="number" id="transaction-amount" placeholder="Сумма">
+                <select id="transaction-category">
+                    <option value="food">Еда</option>
+                    <option value="transport">Транспорт</option>
+                    <option value="home">Жильё</option>
+                    <option value="entertainment">Развлечения</option>
+                    <option value="salary">Зарплата</option>
+                </select>
+                <input type="date" id="transaction-date">
+                <input type="text" id="transaction-description" placeholder="Описание">
+                <button id="add-transaction"><i class="fas fa-plus"></i> Добавить</button>
+            </div>
+
+            <div class="views-container">
+                <!-- Транзакции -->
+                <div class="view" id="transactions-view">
+                    <div class="filters">
+                        <select id="filter-type">
+                            <option value="all">Все операции</option>
+                            <option value="income">Доходы</option>
+                            <option value="expense">Расходы</option>
+                        </select>
+                        <select id="filter-category">
+                            <option value="all">Все категории</option>
+                        </select>
+                        <select id="filter-month">
+                            <option value="all">За всё время</option>
+                        </select>
+                    </div>
+                    <div class="transactions-list" id="transactions-list">
+                        <!-- Транзакции будут здесь -->
+                    </div>
+                </div>
+
+                <!-- Аналитика -->
+                <div class="view hidden" id="analytics-view">
+                    <div class="charts-container">
+                        <div class="chart-card">
+                            <h3>Расходы по категориям</h3>
+                            <canvas id="expense-categories-chart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Доходы/расходы</h3>
+                            <canvas id="income-expense-chart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Динамика за месяц</h3>
+                            <canvas id="monthly-trends-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Категории -->
+                <div class="view hidden" id="categories-view">
+                    <div class="categories-management">
+                        <h3>Мои категории</h3>
+                        <div class="categories-list" id="categories-list">
+                            <!-- Категории будут здесь -->
+                        </div>
+                        <div class="add-category">
+                            <input type="text" id="new-category-name" placeholder="Новая категория">
+                            <select id="new-category-type">
+                                <option value="expense">Расход</option>
+                                <option value="income">Доход</option>
+                            </select>
+                            <button id="add-category-btn"><i class="fas fa-plus"></i> Добавить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="desktop-nav desktop-only">
+            <button class="nav-btn active" data-view="transactions"><i class="fas fa-list"></i> Операции</button>
+            <button class="nav-btn" data-view="analytics"><i class="fas fa-chart-pie"></i> Аналитика</button>
+            <button class="nav-btn" data-view="categories"><i class="fas fa-tags"></i> Категории</button>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
